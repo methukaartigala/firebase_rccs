@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import ListUsers from './components/ListUsers';
+import AddUsers from './components/AddUsers';
+import ListMeetings from './components/ListMeetings'; // Assuming you have a ListMeetings component
 import './App.css';
+import Users from './components/Users';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <div className="navigation">
+          <Link to="/users">
+            <button>Users</button>
+          </Link>
+          <Link to="/meetings">
+            <button>Meetings</button>
+          </Link>
+        </div>
+
+        <div className="content">
+          <Routes>
+            <Route path="/users" element={<Users />} />
+            <Route path="/meetings" element={<ListMeetings />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 
